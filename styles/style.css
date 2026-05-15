@@ -75,7 +75,6 @@ main {
     transform: scale(1.03);
 }
 
-
 .video-wrapper {
     position: relative;
     padding-bottom: 56.25%;
@@ -112,7 +111,6 @@ footer {
 .alert {
     border-radius: 8px;
 }
-
 
 @media (max-width: 768px) {
     .gallery-img {
