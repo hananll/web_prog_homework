@@ -113,7 +113,7 @@ Users can browse active restrictions, contact the site owner, upload images, and
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   git clone https://github.com/hananll/web_prog_homework
    ```
 
 2. Copy the project folder into your `htdocs` directory.
