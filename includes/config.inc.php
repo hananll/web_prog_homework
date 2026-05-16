@@ -4,9 +4,9 @@ function getDB() {
     if ($dbh === null) {
         try {
             $dbh = new PDO(
-                'mysql:host=localhost;dbname=databaselesson',
-                'root',
-                '',
+                'mysql:host=sql103.infinityfree.com;dbname=if0_41866786_traffic',
+                'if0_41866786',
+                'MaLi1357',
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
             );
             $dbh->query('SET NAMES utf8 COLLATE utf8_general_ci');

@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['username']) && isset($_POST['password'])) {
     try {
-        $dbh = new PDO('mysql:host=localhost;dbname=databaselesson', 'root', '',
+        $dbh = new PDO('mysql:host=sql103.infinityfree.com;dbname=if0_41866786_traffic', 'if0_41866786', 'MaLi1357',
                         array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
         $dbh->query('SET NAMES utf8 COLLATE utf8_general_ci');
         
