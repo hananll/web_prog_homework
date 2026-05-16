@@ -1,29 +1,36 @@
 <?php
 $dbh = getDB();
 
+// Load lookup tables for dropdowns
 $namingOptions = $dbh->query("SELECT id, nev FROM naming ORDER BY id")->fetchAll(PDO::FETCH_ASSOC);
 $extentOptions = $dbh->query("SELECT id, nev FROM extent ORDER BY id")->fetchAll(PDO::FETCH_ASSOC);
 
-
-if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
+// --------------------------------------------------------
+// DELETE
+// --------------------------------------------------------
+if (isset($_POST['crud_action']) && $_POST['crud_action'] === 'delete' && isset($_POST['delete_id']) && is_numeric($_POST['delete_id'])) {
     try {
         $stmt = $dbh->prepare("DELETE FROM restriction WHERE id = :id");
-        $stmt->execute([':id' => $_GET['delete']]);
+        $stmt->execute([':id' => $_POST['delete_id']]);
         $crudSuccess = 'Record deleted successfully.';
     } catch (PDOException $e) {
         $crudError = 'Delete failed: ' . $e->getMessage();
     }
 }
 
-
+// --------------------------------------------------------
+// LOAD RECORD FOR EDITING
+// --------------------------------------------------------
 $editRecord = null;
-if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
+if (isset($_POST['crud_action']) && $_POST['crud_action'] === 'edit_load' && isset($_POST['edit_id']) && is_numeric($_POST['edit_id'])) {
     $stmt = $dbh->prepare("SELECT * FROM restriction WHERE id = :id");
-    $stmt->execute([':id' => $_GET['edit']]);
+    $stmt->execute([':id' => $_POST['edit_id']]);
     $editRecord = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-
+// --------------------------------------------------------
+// CREATE
+// --------------------------------------------------------
 if (isset($_POST['crud_action']) && $_POST['crud_action'] === 'create') {
     $errors = validateRestriction($_POST);
     if (!empty($errors)) {
@@ -41,11 +48,14 @@ if (isset($_POST['crud_action']) && $_POST['crud_action'] === 'create') {
     }
 }
 
-
+// --------------------------------------------------------
+// UPDATE
+// --------------------------------------------------------
 if (isset($_POST['crud_action']) && $_POST['crud_action'] === 'update') {
     $errors = validateRestriction($_POST);
     if (!empty($errors)) {
         $crudError = implode(' ', $errors);
+        // Reload edit record with posted data for re-display
         $editRecord = $_POST;
     } else {
         try {
@@ -72,7 +82,9 @@ if (isset($_POST['crud_action']) && $_POST['crud_action'] === 'update') {
     }
 }
 
-
+// --------------------------------------------------------
+// FETCH ALL RECORDS
+// --------------------------------------------------------
 try {
     $sql = "SELECT r.*, n.nev AS naming_text, e.nev AS extent_text
             FROM restriction r
@@ -85,6 +97,9 @@ try {
     $crudError = 'Failed to load records: ' . $e->getMessage();
 }
 
+// --------------------------------------------------------
+// HELPER FUNCTIONS
+// --------------------------------------------------------
 function validateRestriction($data) {
     $errors = [];
     if (empty($data['roadnumber']) || !is_numeric($data['roadnumber'])) {

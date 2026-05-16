@@ -89,6 +89,7 @@
                         </select>
                     </div>
 
+                    <!-- Extent -->
                     <div class="col-md-3">
                         <label class="form-label">Closure Extent <span class="text-danger">*</span></label>
                         <select class="form-select" name="extentid" required>
@@ -186,15 +187,22 @@
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-nowrap">
-                                        <a href="crud?edit=<?= (int)$r['id'] ?>"
-                                           class="btn btn-sm btn-outline-primary me-1">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a>
-                                        <a href="crud?delete=<?= (int)$r['id'] ?>"
-                                           class="btn btn-sm btn-outline-danger"
-                                           onclick="return confirm('Delete this record?')">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </a>
+                                        <form method="post" action="crud" style="display:inline;">
+                                            <input type="hidden" name="crud_action" value="edit_load">
+                                            <input type="hidden" name="edit_id" value="<?= (int)$r['id'] ?>">
+                                            <button type="submit" class="btn btn-sm btn-outline-primary me-1">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </button>
+                                        </form>
+                                        <!-- Delete via POST -->
+                                        <form method="post" action="crud" style="display:inline;"
+                                              onsubmit="return confirm('Delete this record?')">
+                                            <input type="hidden" name="crud_action" value="delete">
+                                            <input type="hidden" name="delete_id" value="<?= (int)$r['id'] ?>">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
