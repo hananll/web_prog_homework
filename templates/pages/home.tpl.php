@@ -63,7 +63,7 @@
                 <div class="card-body p-0">
                     <div class="video-wrapper">
                         <video controls muted autoplay loop>
-                            <source src="./images/road.mp4" type="video/mp4">
+                            <source src="./images/construction.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -104,7 +104,7 @@
         <div class="card-body p-2">
             <div class="map-wrapper">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86055.98836108658!2d18.9959368!3d47.4979937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741c334d1d4cfc9%3A0x400c4290c1e1160!2sBudapest%2C+Hungary!5e0!3m2!1sen!2shu!4v1700000000000"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d793.3732013214193!2d19.06417230252082!3d47.52782783410548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4741db671c84509b%3A0x83f3ab2f8d65d88!2zTWFneWFyIEvDtnrDunQgTm9ucHJvZml0IFpydC4g4oCTIMOadGTDrWogw5x6bGV0w6FnLCBrw7Z6cG9udA!5e1!3m2!1str!2shu!4v1778970935615!5m2!1str!2shu"
                     allowfullscreen
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
